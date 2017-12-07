@@ -1,0 +1,11 @@
+registry_web:
+        image: hyper/docker-registry-web
+        external_links:
+           - "registry_docker_name"
+        ports:
+           - "9988:8080"
+        volumes:
+           - "/etc/localtime:/etc/localtime"
+           - "/home/jenkins:/var/jenkins_home"
+           - "$(pwd)/config.yml:/conf/config.yml:ro"
+        restart: always

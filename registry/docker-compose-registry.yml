@@ -1,0 +1,13 @@
+registry:
+  restart: always
+  image: registry:2.3
+  ports:
+    - 5000:5000
+  volumes:
+    - "/etc/localtime:/etc/localtime"
+    - /home/registry/auth:/auth
+    - /home/registry/config.yml:/etc/docker/registry/config.yml
+  environment:
+    - REGISTRY_AUTH=htpasswd
+    - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+    - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
